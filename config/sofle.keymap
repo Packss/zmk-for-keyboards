@@ -27,6 +27,13 @@
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
         };
+
+        mousetest: mousetest {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "MOUSETEST";
+            #sensor-binding-cells = <0>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
+        };
     };
 
     // Activate ADJUST layer by pressing raise and lower
@@ -59,9 +66,7 @@
                    &kp LEFT_CONTROL  &kp LALT  &kp LEFT_WIN  &kp SPACE  &lt 1 SPACE    &lt 2 ENTER      &kp BACKSPACE  &kp RIGHT_WIN  &kp RIGHT_ALT  &kp RCTRL
             >;
 
-            sensor-bindings =
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
-                <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>, <&mousetest>;
         };
 
         lower_layer {
