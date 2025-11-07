@@ -23,17 +23,10 @@
 / {
     behaviors {
         rgb_encoder: rgb_encoder {
-            compatible = "zmk,behavior-sensor-rotate-var";
+            compatible = "zmk,behavior-sensor-rotate";
             label = "RGB_ENCODER";
-            #sensor-binding-cells = <2>;
-            bindings = <&rgb_ug>, <&rgb_ug>;
-        };
-
-        scroll_encoder: scroll_encoder {
-            compatible = "zmk,behavior-sensor-rotate-var";
-            label = "SCROLL_ENCODER";
-            #sensor-binding-cells = <2>;
-            bindings = <&msc>, <&msc>;
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
         };
     };
 
@@ -110,7 +103,7 @@
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans        &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&rgb_encoder RGB_BRI RGB_BRD>, <&none>;
+            sensor-bindings = <&rgb_encoder>, <&none>;
         };
 
         adjust_layer {
