@@ -103,7 +103,7 @@
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans        &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&rgb>, <&none>;
+            sensor-bindings = <&rgb>;
         };
 
         adjust_layer {
