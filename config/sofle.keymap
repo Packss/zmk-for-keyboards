@@ -22,24 +22,18 @@
 
 / {
     behaviors {
+        rgb_encoder: rgb_encoder {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            label = "RGB_ENCODER";
+            #sensor-binding-cells = <2>;
+            bindings = <&rgb_ug>, <&rgb_ug>;
+        };
+
         scroll_encoder: scroll_encoder {
-            compatible = "zmk,behavior-sensor-rotate";
-            #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
-        };
-
-        mousetest: mousetest {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "MOUSETEST";
-            #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
-        };
-
-        backlight_encoder: backlight_encoder {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "BACKLIGHT_ENCODER";
-            #sensor-binding-cells = <0>;
-            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+            compatible = "zmk,behavior-sensor-rotate-var";
+            label = "SCROLL_ENCODER";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
         };
     };
 
@@ -84,16 +78,16 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&kp GRAVE  &kp N1  &kp N2            &kp N3    &kp N4        &kp N5                                                                   &kp N6         &kp N7         &kp N8         &kp N9     &kp N0    &kp BACKSPACE
-&kp TAB    &kp Q   &kp W             &kp E     &kp R         &kp T                                                                    &kp Y          &kp U          &kp I          &kp O      &kp P     &kp BACKSLASH
-&kp ESC    &kp A   &kp S             &kp D     &kp F         &kp G                                                                    &kp H          &kp J          &kp K          &kp L      &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z   &kp X             &kp C     &kp V         &kp B                                    &kp C_MUTE     &rgb_ug RGB_TOG  &kp N          &kp M          &kp COMMA      &kp DOT    &kp FSLH  &kp RSHFT
-                   &kp LEFT_CONTROL  &kp LALT  &kp LEFT_WIN  &rgblayer RGB_COLOR_HSB_VAL(0,100,50) 3  &lt 1 SPACE    &lt 2 ENTER      &kp BACKSPACE  &kp RIGHT_WIN  &kp RIGHT_ALT  &kp RCTRL
+&kp GRAVE  &kp N1  &kp N2            &kp N3    &kp N4        &kp N5                                     &kp N6         &kp N7         &kp N8         &kp N9     &kp N0    &kp BACKSPACE
+&kp TAB    &kp Q   &kp W             &kp E     &kp R         &kp T                                      &kp Y          &kp U          &kp I          &kp O      &kp P     &kp BACKSLASH
+&kp ESC    &kp A   &kp S             &kp D     &kp F         &kp G                                      &kp H          &kp J          &kp K          &kp L      &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z   &kp X             &kp C     &kp V         &kp B      &kp C_MUTE     &rgb_ug RGB_TOG  &kp N          &kp M          &kp COMMA      &kp DOT    &kp FSLH  &kp RSHFT
+                   &kp LEFT_CONTROL  &kp LALT  &kp LEFT_WIN  &kp SPACE  &lt 1 SPACE    &lt 2 ENTER      &kp BACKSPACE  &kp RIGHT_WIN  &kp RIGHT_ALT  &kp RCTRL
             >;
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_DN C_VOL_UP>,
-                <&inc_dec_kp PAGE_UP PAGE_DOWN>;
+                <&scroll_encoder SCRL_UP SCRL_DOWN>;
         };
 
         lower_layer {
@@ -134,9 +128,7 @@
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans        &trans     &trans    &trans
             >;
 
-            sensor-bindings =
-                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
-                <&backlight_encoder>;
+            sensor-bindings = <&rgb_encoder RGB_BRI RGB_BRD>, <&none>;
         };
 
         adjust_layer {
