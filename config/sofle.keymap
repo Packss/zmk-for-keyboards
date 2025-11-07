@@ -34,6 +34,13 @@
             #sensor-binding-cells = <0>;
             bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
         };
+
+        backlight_encoder: backlight_encoder {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "BACKLIGHT_ENCODER";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+        };
     };
 
     // Activate ADJUST layer by pressing raise and lower
@@ -66,7 +73,9 @@
                    &kp LEFT_CONTROL  &kp LALT  &kp LEFT_WIN  &kp SPACE  &lt 1 SPACE    &lt 2 ENTER      &kp BACKSPACE  &kp RIGHT_WIN  &kp RIGHT_ALT  &kp RCTRL
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>, <&mousetest>;
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
+                <&inc_dec_kp PAGE_UP PAGE_DOWN>;
         };
 
         lower_layer {
@@ -107,7 +116,9 @@
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans        &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &scroll_encoder>;
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_DN C_VOL_UP>,
+                <&backlight_encoder>;
         };
 
         adjust_layer {
