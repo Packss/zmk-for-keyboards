@@ -32,6 +32,15 @@
         };
     };
 
+    behaviors {
+        rgb: rgb {
+            compatible = "zmk,behavior-sensor-rotate";
+            label = "RGB";
+            #sensor-binding-cells = <0>;
+            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -94,7 +103,7 @@
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans        &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&none>, <&none>;
+            sensor-bindings = <&rgb>, <&none>;
         };
 
         adjust_layer {
