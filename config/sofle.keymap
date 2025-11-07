@@ -21,15 +21,6 @@
 #define ADJUST 3
 
 / {
-    behaviors {
-        rgb_encoder: rgb_encoder {
-            compatible = "zmk,behavior-sensor-rotate";
-            label = "RGB_ENCODER";
-            #sensor-binding-cells = <0>;
-            bindings = <&rgb_ug RGB_BRI>, <&rgb_ug RGB_BRD>;
-        };
-    };
-
     // Activate ADJUST layer by pressing raise and lower
 
     conditional_layers {
@@ -103,7 +94,7 @@
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans        &trans     &trans    &trans
             >;
 
-            sensor-bindings = <&rgb_encoder>, <&none>;
+            sensor-bindings = <&none>, <&none>;
         };
 
         adjust_layer {
