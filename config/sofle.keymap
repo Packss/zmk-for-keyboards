@@ -41,6 +41,24 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        cedilha {
+            bindings = <&cedilha>;
+            key-positions = <39 46>;
+        };
+    };
+
+    macros {
+        cedilha: cedilha {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_ALT &kp C &kp COMMA>;
+            label = "CEDILHA";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
